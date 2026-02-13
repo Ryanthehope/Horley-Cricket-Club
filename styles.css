@@ -4,6 +4,19 @@ body {
     margin: 0;
     padding: 0;
     background-color: whitesmoke;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Ensure all images are responsive */
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* Skip to content link for accessibility */
@@ -146,6 +159,8 @@ button:focus,
     margin: 2rem auto;
     max-width: 1200px;
     border-radius: 16px;
+    width: calc(100% - 4rem);
+    box-sizing: border-box;
 }
 
 hr {
@@ -166,22 +181,16 @@ h2 {
 }
 /* Navbar styling */
 .navbar {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     padding: 0.5rem 4rem;
     background-color: darkblue;
-    border-bottom: 1px solid #dee2e6;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: auto;
     min-height: 190px;
 }
 
 .navbar-brand {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    grid-column: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -208,13 +217,14 @@ h2 {
 }
 
 .navbar-nav {
+    grid-column: 3;
+    justify-self: end;
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
     gap: 1rem;
     align-items: center;
-    margin-right: 0.5rem;
 }
 
 .nav-link {
@@ -268,8 +278,10 @@ h2 {
 }
 .bubble {
   float: left;
-  width: 500px;
-  height: 500px;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  aspect-ratio: 1;
   border-radius: 50%;
   shape-outside: circle(50%);
   object-fit: cover;
@@ -451,8 +463,10 @@ footer .navbar-nav {
 }
 
 @media (max-width: 991px) {
-    .navbar {
-        flex-wrap: wrap;
+      .navbar {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
     }
 
     .navbar-brand {
@@ -473,9 +487,8 @@ footer .navbar-nav {
     }
 
     .navbar-nav {
-        flex-direction: column;
-        gap: 1rem;
-        width: 100%;
+        margin-top: 1rem;
+        justify-content: center;
     }
 
     .dropdown-menu {
@@ -510,6 +523,22 @@ footer .navbar-nav {
         font-size: 1.1rem;
     }
 
+    .brand-text {
+        font-size: 1.5rem;
+    }
+
+    .bubble {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 10px 10px 0;
+    }
+
+    .page-content {
+        padding: 1.5rem;
+        margin: 1rem;
+        width: calc(100% - 2rem);
+    }
+
     .navbar-nav {
         gap: 0.75rem;
     }
@@ -517,6 +546,26 @@ footer .navbar-nav {
     .nav-link {
         font-size: 0.9rem;
         padding: 0.4rem 0;
+    }
+
+    .team-section {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .fixtures-section {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .contact-container {
+        margin: 1.5rem;
+        padding: 1.5rem;
+        width: calc(100% - 3rem);
+    }
+
+    .carousel-wrapper {
+        padding: 1.5rem;
+        margin: 0 1rem 2.5rem;
+        width: calc(100% - 2rem);
     }
 }
 
@@ -537,6 +586,24 @@ footer .navbar-nav {
 
     .navbar-brand {
         font-size: 1rem;
+    }
+
+    .brand-text {
+        font-size: 1.2rem;
+    }
+
+    .bubble {
+        float: none;
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto 1rem;
+        display: block;
+    }
+
+    .page-content {
+        padding: 1rem;
+        margin: 0.5rem;
+        width: calc(100% - 1rem);
     }
 
     .navbar-brand img {
@@ -561,6 +628,27 @@ footer .navbar-nav {
 
     .fixtures-content {
         padding: 1rem;
+    }
+
+    .team-section {
+        padding: 2rem 1rem;
+        margin: 1rem 0;
+    }
+
+    .fixtures-section {
+        padding: 2rem 1rem;
+    }
+
+    .contact-container {
+        margin: 1rem;
+        padding: 1rem;
+        width: calc(100% - 2rem);
+    }
+
+    .carousel-wrapper {
+        padding: 1rem;
+        margin: 0 0.5rem 2rem;
+        width: calc(100% - 1rem);
     }
 
     .fixtures-link-card {
@@ -915,6 +1003,8 @@ footer .navbar-nav {
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: calc(100% - 4rem);
+    box-sizing: border-box;
 }
 
 .sponsors-intro {
@@ -1219,6 +1309,8 @@ footer .navbar-nav {
     background: white;
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    width: calc(100% - 4rem);
+    box-sizing: border-box;
 }
 
 .contact-container h1 {
@@ -1306,5 +1398,39 @@ footer .navbar-nav {
     
     .google-map {
         height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .footer-copyright {
+        white-space: normal;
+    }
+
+    .footer-nav .navbar-nav {
+        flex-direction: column;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+    }
+
+    .footer-nav .nav-link {
+        white-space: normal;
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
+}
+@media (max-width: 768px) {
+    footer {
+        padding: 1.5rem 1rem;
     }
 }
