@@ -2,7 +2,6 @@
 function initSite() {
     updateCopyright();
     enableSmoothScroll();
-    initCarousel();
     initFadeInObserver();
     initPageTransitions();
 }
@@ -47,39 +46,6 @@ function enableSmoothScroll() {
                 });
             }
         });
-    });
-}
-
-// ===== CAROUSEL =====
-function initCarousel() {
-    const carousel = document.querySelector('.sponsors-carousel');
-    const prevBtn = document.querySelector('.carousel-btn-prev');
-    const nextBtn = document.querySelector('.carousel-btn-next');
-    const cards = document.querySelectorAll('.sponsor-card');
-
-    if (!carousel || !prevBtn || !nextBtn || cards.length === 0) return;
-
-    let currentIndex = 0;
-
-    function updateCarousel() {
-        const cardOffset = cards[currentIndex].offsetLeft - carousel.offsetLeft;
-
-        carousel.scrollTo({
-            left: cardOffset,
-            behavior: 'smooth'
-        });
-    }
-
-    prevBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        currentIndex = currentIndex > 0 ? currentIndex - 1 : cards.length - 1;
-        updateCarousel();
-    });
-
-    nextBtn.addEventListener('click', function (e) {
-        e.preventDefault();
-        currentIndex = currentIndex < cards.length - 1 ? currentIndex + 1 : 0;
-        updateCarousel();
     });
 }
 

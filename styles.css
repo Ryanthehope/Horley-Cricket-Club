@@ -950,8 +950,9 @@ footer {
     text-align: center;
 }
 
-/* Carousel Container */
-.carousel-wrapper {
+/* Sponsors grid container */
+.carousel-wrapper,
+.sponsors-grid-section {
     position: relative;
     max-width: 1200px;
     margin: 0 auto 3rem;
@@ -966,29 +967,17 @@ footer {
     box-sizing: border-box;
 }
 
-/* Remove duplicate sponsors-intro rule that previously appeared after .carousel-wrapper */
-
 .sponsors-carousel {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 2rem;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    padding: 2rem 0;
+    padding: 2rem 0 0;
     list-style: none;
     margin: 0;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.sponsors-carousel::-webkit-scrollbar {
-    display: none;
 }
 
 /* Sponsor Cards */
 .sponsor-card {
-    flex: 0 0 calc(33.333% - 1.34rem);
-    scroll-snap-align: start;
     background: white;
     border-radius: 16px;
     padding: 2rem;
@@ -1018,19 +1007,8 @@ footer {
 
 /* Staggered entrance for carousel cards */
 .sponsors-carousel .sponsor-card {
-    animation: slideInFromRight 0.6s ease forwards;
+    animation: fadeInUp 0.6s ease forwards;
     opacity: 0;
-}
-
-@keyframes slideInFromRight {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
 }
 
 .sponsors-carousel .sponsor-card:nth-child(1) {
@@ -1051,6 +1029,10 @@ footer {
 
 .sponsors-carousel .sponsor-card:nth-child(5) {
     animation-delay: 0.5s;
+}
+
+.sponsors-carousel .sponsor-card:nth-child(6) {
+    animation-delay: 0.6s;
 }
 
 .sponsor-logo {
@@ -1074,39 +1056,21 @@ footer {
 }
 
 /* Navigation Buttons */
-.carousel-nav {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    pointer-events: none;
-    z-index: 10;
-}
+@media (max-width: 640px) {
+    .carousel-wrapper,
+    .sponsors-grid-section {
+        width: calc(100% - 2rem);
+        padding: 1.5rem;
+    }
 
-.carousel-btn {
-    pointer-events: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 50px;
-    background-color: var(--color-primary);
-    color: white;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-decoration: none;
-    user-select: none;
-}
+    .sponsors-carousel {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
 
-.carousel-btn:hover {
-    background-color: var(--color-accent);
-    transform: scale(1.15) translateY(-2px);
+    .sponsor-card {
+        padding: 1.5rem;
+    }
 }
 
 /* Future Sponsors Section */
